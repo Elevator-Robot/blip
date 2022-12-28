@@ -28,7 +28,7 @@ jobs:
       - name: Build packages
         uses: udondan/jsii-publish@v0.14.0
         with:
-          BUILD_PACKAGES: true
+          # BUILD_PACKAGES: true
           BUILD_SOURCE: true
 
       - name: Publish to npm
