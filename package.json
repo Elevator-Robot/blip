@@ -5,6 +5,9 @@
     "watch": "tsc -w",
     "test": "jest"
   },
+  "dependencies": {
+    "constructs": "^10.1.202"
+  },
   "devDependencies": {
     "aws-cdk": "^2.57.0",
     "aws-cdk-lib": "^2.57.0",
