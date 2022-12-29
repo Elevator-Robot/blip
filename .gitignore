@@ -106,3 +106,8 @@ dist
 # jsii
 .jsii
 tsconfig.json 
+
+# Compiler junk
+*.d.ts
+*.js.map
+*.js
