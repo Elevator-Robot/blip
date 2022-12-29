@@ -2,12 +2,14 @@
   "name": "blip",
   "version": "1.0.0",
   "description": "Build a simple static site",
-  "main": "dist/index.js",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "build": "jsii",
     "package": "jsii-pacmak",
-    "watch": "jsii -w"
+    "watch": "jsii -w",
+    "compile": "tsc"
   },
   "repository": {
     "type": "git",
@@ -35,9 +37,9 @@
   "bugs": {
     "url": "https://github.com/aphexlog/blip/issues"
   },
-  "types": "dist/index.d.ts",
+  "types": "src/index.d.ts",
   "jsii": {
-    "outdir": "dist",
+    "outdir": "./dist",
     "targets": {
       "java": {
         "package": "com.aphexlog.blip",
@@ -54,7 +56,16 @@
   },
   "homepage": "https://github.com/aphexlog/blip#readme",
   "devDependencies": {
+    "@types/node": "^18.11.18",
+    "aws-cdk-lib": "^2.58.0",
     "jsii": "^1.72.0",
-    "jsii-pacmak": "^1.72.0"
+    "jsii-pacmak": "^1.72.0",
+    "constructs": "10.1.203"
+  },
+  "peerDependencies": {
+    "constructs": "10.1.203"
+
+  },
+  "dependencies": {
   }
 }

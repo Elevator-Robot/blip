@@ -10,9 +10,9 @@ import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as r53Targets from 'aws-cdk-lib/aws-route53-targets';
 
-interface MyConstructProps {
-    domainName: string;
-    webAssetPath: string;
+export interface MyConstructProps {
+    readonly domainName: string;
+    readonly webAssetPath: string;
 }
 
 // create cdk construct
