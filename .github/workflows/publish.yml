@@ -34,4 +34,4 @@ jobs:
       - name: Publish to npm
         uses: udondan/jsii-publish@v0.14.0
         with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}'
