@@ -3,7 +3,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest"
+    "test": "jest",
+    "package": "cdk synth"
   },
   "dependencies": {
     "constructs": "^10.1.202"
