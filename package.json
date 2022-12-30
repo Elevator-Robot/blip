@@ -1,6 +1,6 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Build a simple static site",
   "main": "src/index.js",
   "type": "module",
@@ -47,6 +47,11 @@
           "groupId": "com.aphexlog",
           "artifactId": "blip"
         }
+      },
+      "python": {
+        "distName": "blip",
+        "module": "blip",
+        "targetDir": "./dist"
       },
       "dotnet": {
         "namespace": "Aphexlog.Blip",
