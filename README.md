@@ -1,6 +1,12 @@
 # Blip
 
-## using the Blip NPM package
+## Prerequisites
+
+1. AWS programmatic credentials with necessary permissions to do this deployment
+2. A registered domain on Route53
+3. Web asset folder
+
+## Using the Blip NPM package
 
 1. make sure you have the latest version of the CDK CLI installed.
 2. make sure your AWK CLI credentials && profile are setup.
