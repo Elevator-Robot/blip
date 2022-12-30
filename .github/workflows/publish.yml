@@ -19,19 +19,14 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Build source
+      - name: Publish packages
         uses: udondan/jsii-publish@v0.14.0
         with:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
           BUILD_SOURCE: true
-
-      - name: Build packages
-        uses: udondan/jsii-publish@v0.14.0
-        with:
           BUILD_PACKAGES: true
-          DEBUG: true
-
-      - name: Publish to npm
-        uses: udondan/jsii-publish@v0.14.0
-        with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}'
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+          # NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_REPOSITORY: ${{ github.repository }}
