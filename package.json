@@ -41,22 +41,11 @@
   "jsii": {
     "outdir": "./dist",
     "targets": {
-      "java": {
-        "package": "com.aphexlog.blip",
-        "maven": {
-          "groupId": "com.aphexlog",
-          "artifactId": "blip"
-        }
-      },
       "python": {
-        "distName": "dist",
-        "module": "blip"
-      },
-      "dotnet": {
-        "namespace": "Aphexlog.Blip",
-        "packageId": "Aphexlog"
+        "distName": "blip",
+        "module": "blip",
+        "targetDir": "dist"
       }
-    }
   },
   "homepage": "https://github.com/aphexlog/blip#readme",
   "devDependencies": {
