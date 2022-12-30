@@ -49,9 +49,8 @@
         }
       },
       "python": {
-        "distName": "blip",
-        "module": "blip",
-        "targetDir": "./dist"
+        "distName": "dist",
+        "module": "blip"
       },
       "dotnet": {
         "namespace": "Aphexlog.Blip",
