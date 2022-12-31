@@ -14,29 +14,25 @@ jobs:
       run: |
         version="$(jq -r '.version' package.json)"
         echo "::set-output name=VERSION::$version"
-
-    - name: Output version
-      run: echo ${{ steps.version.outputs.VERSION }}
-
     - name: Build
-      uses: udondan/jsii-publish@v0.12.0
+      uses: udondan/jsii-publish@v0.14.0
       with:
         VERSION: ${{ steps.version.outputs.VERSION }}
         BUILD_SOURCE: true
     - name: Package
-      uses: udondan/jsii-publish@v0.12.0
+      uses: udondan/jsii-publish@v0.14.0
       with:
         BUILD_PACKAGES: true
     - name: Npm
-      uses: udondan/jsii-publish@v0.12.0
+      uses: udondan/jsii-publish@v0.14.0
       with:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Pypi
-      uses: udondan/jsii-publish@v0.12.0
+      uses: udondan/jsii-publish@v0.14.0
       with:
         PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     - name: Nuget
-      uses: udondan/jsii-publish@v0.12.0
+      uses: udondan/jsii-publish@v0.14.0
       with:
         NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
     - name: Release
