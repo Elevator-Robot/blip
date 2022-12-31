@@ -11,6 +11,10 @@
     "watch": "jsii -w",
     "compile": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elevator-robot/blip.git"
+  },
   "keywords": [
     "statc",
     "site"
@@ -31,30 +35,33 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/aphexlog/blip/issues"
+    "url": "https://github.com/elevator-robot/blip/issues"
   },
   "types": "src/index.d.ts",
   "jsii": {
     "outdir": "./dist",
     "targets": {
       "java": {
-        "package": "com.aphexlog.blip",
+        "package": "com.elevator-robot.blip",
         "maven": {
-          "groupId": "com.aphexlog",
+          "groupId": "com.elevator-robot",
           "artifactId": "blip"
         }
       },
       "python": {
         "distName": "blip",
-        "module": "blip"
+        "module": "blip",
+        "project_urls": {
+          "source": "https://github.com/elevator-robot/blip/",
+          "issues": "https://github.com/elevator-robot/blip/issues"
       },
       "dotnet": {
-        "namespace": "Aphexlog.Blip",
-        "packageId": "Aphexlog"
+        "namespace": "elevator-robot.Blip",
+        "packageId": "blip"
       }
     }
   },
-  "homepage": "https://github.com/aphexlog/blip#readme",
+  "homepage": "https://github.com/elevator-robot/blip#readme",
   "devDependencies": {
     "@types/node": "^18.11.18",
     "aws-cdk-lib": "^2.58.0",
@@ -66,4 +73,5 @@
     "constructs": "10.1.203"
   },
   "dependencies": {}
+  }
 }
