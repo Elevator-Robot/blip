@@ -14,7 +14,6 @@ export interface Props {
     readonly webAssetPath: string;
 }
 
-// create cdk construct
 export class Blip extends Construct {
     constructor(scope: Construct, id: string, props: Props) {
         super(scope, id);
