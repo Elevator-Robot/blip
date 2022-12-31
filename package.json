@@ -3,9 +3,9 @@
   "version": "1.0.12",
   "description": "Build a simple static site",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
-    "test": "jest",
+    "lint": "eslint .",
+    "test": "tsc --build tsconfig.json && jest --runInBand",
     "build": "jsii",
     "package": "jsii-pacmak",
     "watch": "jsii -w",
@@ -39,7 +39,7 @@
   },
   "types": "src/index.d.ts",
   "jsii": {
-    "outdir": "./dist",
+    "outdir": "dist",
     "targets": {
       "python": {
         "distName": "blip",
