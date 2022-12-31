@@ -10,14 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
-
-      - name: Checkout code
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
 
       - name: Build
         uses: udondan/jsii-publish@v0.14.0
