@@ -42,7 +42,7 @@
     "outdir": "./dist",
     "targets": {
       "python": {
-        "distName": "./dist",
+        "distName": "blip",
         "module": "blip",
         "project_urls": {
           "source": "https://github.com/elevator-robot/blip/",

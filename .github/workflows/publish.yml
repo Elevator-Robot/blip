@@ -2,39 +2,46 @@ name: Publish packages
 
 on:
   push:
-    tags:
-      - "v*"
-
+    branches: [main, feature/python-jsii]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\/v/}
-
-      - name: Build
-        uses: udondan/jsii-publish@v0.14.0
-        with:
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
-          BUILD_SOURCE: true
-
-      - name: Package
-        uses: udondan/jsii-publish@v0.14.0
-        with:
-          BUILD_PACKAGES: true
-
-      - name: Npm
-        uses: udondan/jsii-publish@v0.14.0
-        with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Pypi
-        uses: udondan/jsii-publish@v0.14.0
-        with:
-          PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-          DEBUG: true
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Version
+      id: version
+      run: |
+        version="$(jq -r '.version' package.json)"
+        echo "::set-output name=VERSION::$version"
+    - name: Build
+      uses: udondan/jsii-publish@v0.12.0
+      with:
+        VERSION: ${{ steps.version.outputs.VERSION }}
+        BUILD_SOURCE: true
+    - name: Package
+      uses: udondan/jsii-publish@v0.12.0
+      with:
+        BUILD_PACKAGES: true
+    - name: Npm
+      uses: udondan/jsii-publish@v0.12.0
+      with:
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Pypi
+      uses: udondan/jsii-publish@v0.12.0
+      with:
+        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+    - name: Nuget
+      uses: udondan/jsii-publish@v0.12.0
+      with:
+        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
+    - name: Release
+      id: release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version.outputs.VERSION }}
+        release_name: Release ${{ steps.version.outputs.VERSION }}
+        draft: false
+        prerelease: false
