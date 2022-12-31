@@ -41,23 +41,12 @@
   "jsii": {
     "outdir": "./dist",
     "targets": {
-      "java": {
-        "package": "com.elevator-robot.blip",
-        "maven": {
-          "groupId": "com.elevator-robot",
-          "artifactId": "blip"
-        }
-      },
       "python": {
-        "distName": "blip",
+        "distName": "./dist",
         "module": "blip",
         "project_urls": {
           "source": "https://github.com/elevator-robot/blip/",
           "issues": "https://github.com/elevator-robot/blip/issues"
-      },
-      "dotnet": {
-        "namespace": "elevator-robot.Blip",
-        "packageId": "blip"
       }
     }
   },
