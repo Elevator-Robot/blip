@@ -1,54 +1,53 @@
-import * as cdk from 'aws-cdk-lib';
+import { RemovalPolicy, CfnOutput, Duration } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
-import * as s3 from 'aws-cdk-lib/aws-s3';
-import * as r53 from 'aws-cdk-lib/aws-route53';
-import * as acm from 'aws-cdk-lib/aws-certificatemanager';
-import * as uploadS3 from 'aws-cdk-lib/aws-s3-deployment';
-import * as cloudfront from 'aws-cdk-lib/aws-cloudfront';
-import * as origins from 'aws-cdk-lib/aws-cloudfront-origins';
-import * as iam from 'aws-cdk-lib/aws-iam';
-import * as r53Targets from 'aws-cdk-lib/aws-route53-targets';
-
-export interface MyConstructProps {
+import { Bucket, BucketEncryption } from 'aws-cdk-lib/aws-s3';
+import { RecordTarget, ARecord, HostedZone } from 'aws-cdk-lib/aws-route53';
+import { DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
+import { Distribution, AllowedMethods, ViewerProtocolPolicy } from 'aws-cdk-lib/aws-cloudfront';
+import { S3Origin } from 'aws-cdk-lib/aws-cloudfront-origins';
+import { PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
+import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
+export interface Props {
     readonly domainName: string;
     readonly webAssetPath: string;
 }
 
 // create cdk construct
-export class MyConstruct extends Construct {
-    constructor(scope: Construct, id: string, props: MyConstructProps) {
+export class Blip extends Construct {
+    constructor(scope: Construct, id: string, props: Props) {
         super(scope, id);
 
-        const bucket = new s3.Bucket(this, 'AaronwestMeBucket', {
-            removalPolicy: cdk.RemovalPolicy.DESTROY,
+        const bucket = new Bucket(this, 'AaronwestMeBucket', {
+            removalPolicy: RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
             websiteIndexDocument: 'index.html',
             websiteErrorDocument: 'index.html',
             versioned: true,
-            encryption: s3.BucketEncryption.S3_MANAGED,
+            encryption: BucketEncryption.S3_MANAGED,
         });
 
-        const zone = r53.HostedZone.fromLookup(this, 'Zone', {
+        const zone = HostedZone.fromLookup(this, 'Zone', {
             domainName: props.domainName,
         });
 
-        const certificate = new acm.DnsValidatedCertificate(this, 'Certificate', {
+        const certificate = new DnsValidatedCertificate(this, 'Certificate', {
             domainName: props.domainName,
             hostedZone: zone,
             region: 'us-east-1',
         });
 
-        new uploadS3.BucketDeployment(this, 'DeployWithInvalidation', {
-            sources: [uploadS3.Source.asset(props.webAssetPath)],
+        new BucketDeployment(this, 'DeployWithInvalidation', {
+            sources: [Source.asset(props.webAssetPath)],
             destinationBucket: bucket,
         });
 
-        const distribution = new cloudfront.Distribution(this, 'MyDistribution', {
+        const distribution = new Distribution(this, 'MyDistribution', {
             defaultBehavior: {
-            origin: new origins.S3Origin(bucket),
-            allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
-            viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+            origin: new S3Origin(bucket),
+            allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
+            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             },
             enabled: true,
             domainNames: [props.domainName],
@@ -58,30 +57,30 @@ export class MyConstruct extends Construct {
             defaultRootObject: 'index.html',
         });
 
-        bucket.addToResourcePolicy(new iam.PolicyStatement({
+        bucket.addToResourcePolicy(new PolicyStatement({
             actions: ['s3:GetObject'],
             resources: [bucket.arnForObjects('*')],
-            principals: [new iam.ServicePrincipal('cloudfront.amazonaws.com')],
+            principals: [new ServicePrincipal('cloudfront.amazonaws.com')],
             conditions: {
             StringEquals: {'aws:Referer': certificate.certificateArn}
             },
         }));
 
-        const record = new r53.ARecord(this, 'AliasRecord', {
+        const record = new ARecord(this, 'AliasRecord', {
             zone,
             recordName: props.domainName,
-            target: r53.RecordTarget.fromAlias(new r53Targets.CloudFrontTarget(distribution)),
+            target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
             deleteExisting: true,
-            ttl: cdk.Duration.seconds(60),
+            ttl: Duration.seconds(60),
         });
 
-        new cdk.CfnOutput(this, 'DistributionDomainName', {
+        new CfnOutput(this, 'DistributionDomainName', {
             value: distribution.distributionDomainName,
         });
-        new cdk.CfnOutput(this, 'DomainName', {
+        new CfnOutput(this, 'DomainName', {
             value: record.domainName,
         });
-        new cdk.CfnOutput(this, 'BucketUrl', {
+        new CfnOutput(this, 'BucketUrl', {
             value: bucket.bucketWebsiteUrl,
         });
 
