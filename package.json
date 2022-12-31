@@ -48,6 +48,10 @@
           "artifactId": "blip"
         }
       },
+      "python": {
+        "distName": "blip",
+        "module": "blip"
+      },
       "dotnet": {
         "namespace": "Aphexlog.Blip",
         "packageId": "Aphexlog"
