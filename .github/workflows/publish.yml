@@ -7,41 +7,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Version
-      id: version
-      run: |
-        version="$(jq -r '.version' package.json)"
-        echo "::set-output name=VERSION::$version"
-    - name: Build
-      uses: udondan/jsii-publish@v0.14.0
-      with:
-        VERSION: ${{ steps.version.outputs.VERSION }}
-        BUILD_SOURCE: true
-    - name: Package
-      uses: udondan/jsii-publish@v0.14.0
-      with:
-        BUILD_PACKAGES: true
-    # - name: Npm
-    #   uses: udondan/jsii-publish@v0.14.0
-    #   with:
-    #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Pypi
-      uses: udondan/jsii-publish@v0.14.0
-      with:
-        PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
-    - name: Nuget
-      uses: udondan/jsii-publish@v0.14.0
-      with:
-        NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
-    - name: Release
-      id: release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ steps.version.outputs.VERSION }}
-        release_name: Release ${{ steps.version.outputs.VERSION }}
-        draft: false
-        prerelease: false
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: flood-io/is-published-on-npm@v1
+        id: is-published
+      - run: npm publish
+        if: ${{ steps.is-published.outputs.published == 'false' }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
