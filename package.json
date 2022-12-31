@@ -1,6 +1,6 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.12",
+  "version": "1.0.20",
   "description": "Build a simple static site",
   "main": "src/index.js",
   "scripts": {
@@ -54,16 +54,15 @@
 },
 "devDependencies": {
   "@types/node": "^18.11.18",
-  "aws-cdk-lib": "^2.58.0",
+  "aws-cdk-lib": "^2.58.1",
   "jsii": "^1.72.0",
   "jsii-pacmak": "^1.72.0",
   "constructs": "10.1.203"
 },
 "peerDependencies": {
-  "constructs": "10.1.203",
-  "aws-cdk-lib": "^2.58.0"
+  "constructs": "10.1.203"
 },
 "dependencies": {
-  "aws-cdk-lib": "^2.58.0"
+  "aws-cdk-lib": "^2.58.1"
 }
 }
