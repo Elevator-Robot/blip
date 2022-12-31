@@ -23,10 +23,10 @@ jobs:
       uses: udondan/jsii-publish@v0.14.0
       with:
         BUILD_PACKAGES: true
-    - name: Npm
-      uses: udondan/jsii-publish@v0.14.0
-      with:
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    # - name: Npm
+    #   uses: udondan/jsii-publish@v0.14.0
+    #   with:
+    #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Pypi
       uses: udondan/jsii-publish@v0.14.0
       with:
