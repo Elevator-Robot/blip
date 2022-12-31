@@ -30,3 +30,4 @@ jobs:
           # NUGET_TOKEN: ${{ secrets.NUGET_TOKEN }}
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # GITHUB_REPOSITORY: ${{ github.repository }}
+          DEBUG: true
