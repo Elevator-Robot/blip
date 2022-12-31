@@ -6,10 +6,8 @@
   "scripts": {
     "lint": "eslint .",
     "test": "tsc --build tsconfig.json && jest --runInBand",
-    "build": "jsii",
-    "package": "jsii-pacmak",
-    "watch": "jsii -w",
-    "compile": "tsc"
+    "build": "tsc --build tsconfig.json",
+    "watch": "tsc --build tsconfig.json --watch"
   },
   "repository": {
     "type": "git",
@@ -38,31 +36,16 @@
     "url": "https://github.com/elevator-robot/blip/issues"
   },
   "types": "src/index.d.ts",
-  "jsii": {
-    "outdir": "dist",
-    "targets": {
-      "python": {
-        "distName": "blip",
-        "module": "blip",
-        "project_urls": {
-          "source": "https://github.com/elevator-robot/blip/",
-          "issues": "https://github.com/elevator-robot/blip/issues"
-      }
-    }
+  "homepage": "https://github.com/elevator-robot/blip#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "aws-cdk-lib": "^2.58.1",
+    "constructs": "10.1.203"
   },
-  "homepage": "https://github.com/elevator-robot/blip#readme"
-},
-"devDependencies": {
-  "@types/node": "^18.11.18",
-  "aws-cdk-lib": "^2.58.1",
-  "jsii": "^1.72.0",
-  "jsii-pacmak": "^1.72.0",
-  "constructs": "10.1.203"
-},
-"peerDependencies": {
-  "constructs": "10.1.203"
-},
-"dependencies": {
-  "aws-cdk-lib": "^2.58.1"
-}
+  "peerDependencies": {
+    "constructs": "10.1.203"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.58.1"
+  }
 }
