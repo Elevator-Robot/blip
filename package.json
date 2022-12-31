@@ -1,19 +1,17 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.12",
+  "version": "1.0.23",
   "description": "Build a simple static site",
   "main": "src/index.js",
-  "type": "module",
   "scripts": {
-    "test": "jest",
-    "build": "jsii",
-    "package": "jsii-pacmak",
-    "watch": "jsii -w",
-    "compile": "tsc"
+    "lint": "eslint .",
+    "test": "tsc --build tsconfig.json && jest --runInBand",
+    "build": "tsc --build tsconfig.json",
+    "watch": "tsc --build tsconfig.json --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/aphexlog/blip.git"
+    "url": "https://github.com/elevator-robot/blip"
   },
   "keywords": [
     "statc",
@@ -35,35 +33,19 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/aphexlog/blip/issues"
+    "url": "https://github.com/elevator-robot/blip/issues"
   },
   "types": "src/index.d.ts",
-  "jsii": {
-    "outdir": "./dist",
-    "targets": {
-      "java": {
-        "package": "com.aphexlog.blip",
-        "maven": {
-          "groupId": "com.aphexlog",
-          "artifactId": "blip"
-        }
-      },
-      "dotnet": {
-        "namespace": "Aphexlog.Blip",
-        "packageId": "Aphexlog"
-      }
-    }
-  },
-  "homepage": "https://github.com/aphexlog/blip#readme",
+  "homepage": "https://github.com/elevator-robot/blip#readme",
   "devDependencies": {
     "@types/node": "^18.11.18",
-    "aws-cdk-lib": "^2.58.0",
-    "jsii": "^1.72.0",
-    "jsii-pacmak": "^1.72.0",
+    "aws-cdk-lib": "^2.58.1",
     "constructs": "10.1.203"
   },
   "peerDependencies": {
     "constructs": "10.1.203"
   },
-  "dependencies": {}
+  "dependencies": {
+    "aws-cdk-lib": "^2.58.1"
+  }
 }

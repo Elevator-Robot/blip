@@ -103,10 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-# jsii
-.jsii
-tsconfig.json 
-
 # Compiler junk
 *.d.ts
 *.js.map
