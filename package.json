@@ -1,8 +1,9 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.29",
+  "version": "1.0.31",
   "description": "Build a simple static site",
   "main": "dist/index.js",
+  "type": "module",
   "scripts": {
     "lint": "eslint .",
     "test": "tsc --build tsconfig.json && jest --runInBand",
@@ -35,7 +36,7 @@
   "bugs": {
     "url": "https://github.com/elevator-robot/blip/issues"
   },
-  "types": "dist/index.d.js",
+  "types": "src/index.d.ts",
   "homepage": "https://github.com/elevator-robot/blip#readme",
   "devDependencies": {
     "@types/node": "^18.11.18",
