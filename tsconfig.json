@@ -9,7 +9,7 @@
     "experimentalDecorators": true,
     "incremental": true,
     "lib": [
-      "es2020"
+      "ES2022"
     ],
     "module": "CommonJS",
     "newLine": "lf",
