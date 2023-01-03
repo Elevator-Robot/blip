@@ -1,6 +1,6 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "Build a simple static site",
   "main": "dist/index.js",
   "scripts": {
@@ -13,10 +13,10 @@
     "type": "git",
     "url": "https://github.com/elevator-robot/blip"
   },
-  "keywords": [
-    "statc",
-    "site"
+  "files": [
+    "dist"
   ],
+  "keywords": [],
   "author": {
     "name": "Aphexlog",
     "email": "aphexlog@gmail.com"
@@ -35,7 +35,7 @@
   "bugs": {
     "url": "https://github.com/elevator-robot/blip/issues"
   },
-  "types": "src/index.d.ts",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/elevator-robot/blip#readme",
   "devDependencies": {
     "@types/node": "^18.11.18",
