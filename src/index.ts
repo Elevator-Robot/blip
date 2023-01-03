@@ -18,7 +18,7 @@ export class Blip extends Construct {
     constructor(scope: Construct, id: string, props: Props) {
         super(scope, id);
 
-        const bucket = new Bucket(this, 'AaronwestMeBucket', {
+        const bucket = new Bucket(this, 'Bucket', {
             removalPolicy: RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
             websiteIndexDocument: 'index.html',
@@ -37,12 +37,12 @@ export class Blip extends Construct {
             region: 'us-east-1',
         });
 
-        new BucketDeployment(this, 'DeployWithInvalidation', {
+        new BucketDeployment(this, 'DeployToBucket', {
             sources: [Source.asset(props.webAssetPath)],
             destinationBucket: bucket,
         });
 
-        const distribution = new Distribution(this, 'MyDistribution', {
+        const distribution = new Distribution(this, 'Distribution', {
             defaultBehavior: {
             origin: new S3Origin(bucket),
             allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
