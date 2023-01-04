@@ -1,6 +1,6 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.34",
+  "version": "1.0.36",
   "description": "Build a simple static site",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
