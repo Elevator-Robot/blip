@@ -15,3 +15,9 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: package.json
+          tag: latest
+          access: public
+          check-version: true
+          registry: https://registry.npmjs.org/
+          dry-run: false
