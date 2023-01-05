@@ -3,6 +3,10 @@ name: Publish packages
 on:
   push:
     branches: [main, feature/gsd]
+
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,5 +19,3 @@ jobs:
         run: |
           npm install
           npm publish --access public
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
