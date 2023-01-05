@@ -4,8 +4,8 @@ on:
   push:
     branches: [main, feature/gsd]
 
-env:
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+# env:
+#   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
 jobs:
   build:
@@ -16,7 +16,12 @@ jobs:
         with:
           node-version: 18
       - name: Publish Package
-        run: |
-          export NPM_TOKEN=${{ secrets.NPM_TOKEN }}
-          npm install
-          npm publish --access public
+        uses: pascalgn/npm-publish-action@1.3.9
+        with:
+          publish_args: "--non-interactive"
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+        # run: |
+        #   npm install
+        #   npm publish --access public
