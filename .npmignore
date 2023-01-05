@@ -8,6 +8,6 @@ node_modules
 CODEOWNERS
 
 # Include javascript files and typescript declarations
-!*.js
-!*.d.ts
+# !*.js
+# !*.d.ts
 
