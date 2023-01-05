@@ -21,7 +21,6 @@ jobs:
       #     check-version: true
       #     registry: https://registry.npmjs.org/
       #     dry-run: false
-      - run: |
-          npm publish --access public
+      - run: npm publish --access public
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
