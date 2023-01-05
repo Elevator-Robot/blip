@@ -3,10 +3,6 @@ name: Publish packages
 on:
   push:
     branches: [main, feature/gsd]
-
-# env:
-#   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,13 +11,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - run: npm install
       - name: Publish Package
-        uses: pascalgn/npm-publish-action@1.3.9
-        # with:
-        #   publish_args: "--non-interactive"
-        env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-        # run: |
-        #   npm install
-        #   npm publish --access public
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: package.json
+          tag: latest
+          access: public
+          check-version: true
+          registry: https://registry.npmjs.org/
+          dry-run: false
