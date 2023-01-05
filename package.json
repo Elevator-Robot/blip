@@ -1,12 +1,13 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "description": "Build a simple static site",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "src/index.js"
   ],
   "scripts": {
     "lint": "eslint .",
