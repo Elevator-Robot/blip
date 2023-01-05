@@ -12,12 +12,16 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: package.json
-          tag: latest
-          access: public
-          check-version: true
-          registry: https://registry.npmjs.org/
-          dry-run: false
+      # - uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #     package: package.json
+      #     tag: latest
+      #     access: public
+      #     check-version: true
+      #     registry: https://registry.npmjs.org/
+      #     dry-run: false
+      - run: |
+          npm publish --access public
+      - env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
