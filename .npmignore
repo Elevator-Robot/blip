@@ -7,8 +7,11 @@ node_modules
 .gitignore
 CODEOWNERS
 tsconfig.tsbuildinfo
+.circleci
+cf-template.json
 
 # Include javascript files and typescript declarations
 !*.js
 !*.d.ts
+src
 
