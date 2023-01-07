@@ -6,7 +6,9 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
     "lint": "eslint .",
