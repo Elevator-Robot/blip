@@ -6,6 +6,7 @@ node_modules
 .github
 .gitignore
 CODEOWNERS
+tsconfig.tsbuildinfo
 
 # Include javascript files and typescript declarations
 !*.js

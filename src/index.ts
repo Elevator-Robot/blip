@@ -1,6 +1,4 @@
-// import { Construct } from 'constructs';
 import { App } from 'aws-cdk-lib';
-// import { Construct } from 'constructs';
 
 import { StaticSiteStack } from './app';
 
@@ -28,6 +26,7 @@ class Application {
         return template;
 
     }
+
 }
 
 export { Application };
