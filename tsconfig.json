@@ -35,9 +35,5 @@
   ],
   "exclude": [
     "node_modules"
-  ],
-  "files": [
-    "dist/index.d.ts",
-    "dist/index.js",
   ]
 }
