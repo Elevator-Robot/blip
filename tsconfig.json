@@ -37,6 +37,7 @@
     "node_modules"
   ],
   "files": [
-    "src/index.ts"
+    "dist/index.d.ts",
+    "dist/index.js",
   ]
 }
