@@ -102,18 +102,3 @@ export class StaticSiteStack extends Stack {
         });
     }
 }
-
-// // export default StaticSiteStack;
-// class Apploication extends Construct {
-//     constructor(scope: Construct, id: string) {
-//         super(scope, id);
-
-//         const app = new App();
-//         new StaticSiteStack(app, 'StaticSiteStack', {
-//             domainName: 'aaronwest.me',
-//             webAssetPath: 'dist',
-//         });
-//     }
-// }
-
-// export default Apploication;

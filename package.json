@@ -1,13 +1,10 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.54",
+  "version": "1.0.64",
   "description": "Build a simple static site",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "type": "commonjs",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "lint": "eslint .",
     "test": "tsc --build tsconfig.json && jest --runInBand",
