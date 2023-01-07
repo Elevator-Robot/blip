@@ -2,7 +2,7 @@ name: Publish packages
 
 on:
   push:
-    branches: [main, circleci-project-setup]
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest

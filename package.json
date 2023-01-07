@@ -1,6 +1,6 @@
 {
   "name": "@elevator-robot/blip",
-  "version": "1.0.63",
+  "version": "1.0.64",
   "description": "Build a simple static site",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,6 @@
   },
   "homepage": "https://github.com/elevator-robot/blip#readme",
   "devDependencies": {
-    "@elevator-robot/blip": "^1.0.62",
     "@types/node": "^18.11.18",
     "aws-cdk-lib": "^2.58.1",
     "constructs": "10.1.203",
