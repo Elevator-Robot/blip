@@ -4,7 +4,7 @@
   "description": "Build a simple static site",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "lint": "eslint .",
     "test": "tsc --build tsconfig.json && jest --runInBand",
