@@ -1,7 +1,14 @@
 # Blip
 
-## Prerequisites
+<!-- create dashboard for circleci status -->
 
+[![CircleCI](https://circleci.com/gh/Elevator-Robot/blip/tree/main.svg?style=shield)](https://circleci.com/gh/Elevator-Robot/blip/tree/main)
+[![npm version](https://badge.fury.io/js/%40elevator-robot%2Fblip.svg)](https://badge.fury.io/js/%40elevator-robot%2Fblip)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+## What is Blip?
+Blip is a CDK construct that deploys a static website to AWS. It creates a CloudFront distribution, S3 bucket, and Route53 record set. It also creates a certificate for the domain name if one does not already exist.
+
+## Prerequisites
 1. AWS programmatic credentials with necessary permissions to do this deployment
 2. A registered domain on Route53
 3. Web asset folder
