@@ -107,3 +107,6 @@ dist
 *.d.ts
 *.js.map
 *.js
+
+# cloudformation template file
+cf-template.json

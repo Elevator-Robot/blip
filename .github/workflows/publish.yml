@@ -2,7 +2,7 @@ name: Publish packages
 
 on:
   push:
-    branches: [main]
+    branches: [main, feature/gsd]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,7 +11,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm install
-      - uses: JS-DevTools/npm-publish@v1
+      - run: |
+          npm install
+          npm run build
+      - name: Publish Package
+        uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
+          package: package.json
+          tag: latest
+          access: public
+          check-version: true
+          registry: https://registry.npmjs.org/
+          dry-run: false
