@@ -117,6 +117,8 @@ export class StaticSiteStack extends Stack {
     constructor(scope: Construct, id: string, props: IStaticSiteStackProps) {
         super(scope, id, props);
 
+        const stack = Stack.of(this);
+
         new HostedSite(stack, 'Blip', {
             domainName: props.domainName,
             webAssetPath: props.webAssetPath,
