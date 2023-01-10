@@ -9,13 +9,28 @@ import { Distribution, AllowedMethods, ViewerProtocolPolicy } from 'aws-cdk-lib/
 import { S3Origin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import { PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
-interface StaticSiteProps {
+
+/**
+ * @typedef IStaticSiteProps
+ * @property {string}         domainName   - domain name to depoy for
+ * @property {string}         webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
+ */
+interface IStaticSiteProps {
     readonly domainName: string;
     readonly webAssetPath: string;
 }
 
+/**
+ * @class
+ */
 class HostedSite extends Construct {
-    constructor(scope: Construct, id: string, props: StaticSiteProps) {
+    /**
+     * 
+     * @param {Construct} scope 
+     * @param {string} id 
+     * @param {IStaticSiteProps} props 
+     */
+    constructor(scope: Construct, id: string, props: IStaticSiteProps) {
         super(scope, id);
 
         const bucket = new Bucket(this, 'Bucket', {
@@ -44,9 +59,9 @@ class HostedSite extends Construct {
 
         const distribution = new Distribution(this, 'Distribution', {
             defaultBehavior: {
-            origin: new S3Origin(bucket),
-            allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
-            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+                origin: new S3Origin(bucket),
+                allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
+                viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             },
             enabled: true,
             domainNames: [props.domainName],
@@ -61,7 +76,7 @@ class HostedSite extends Construct {
             resources: [bucket.arnForObjects('*')],
             principals: [new ServicePrincipal('cloudfront.amazonaws.com')],
             conditions: {
-            StringEquals: {'aws:Referer': certificate.certificateArn}
+                StringEquals: { 'aws:Referer': certificate.certificateArn }
             },
         }));
 
@@ -82,18 +97,22 @@ class HostedSite extends Construct {
         new CfnOutput(this, 'BucketUrl', {
             value: bucket.bucketWebsiteUrl,
         });
-
-
     }
 }
 
-interface StaticSiteStackProps extends StackProps {
+/**
+ * @typedef IStaticSiteStackProps
+ * @property {string}         domainName   - domain name to depoy for
+ * @property {string}         webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
+ * @extends StackProps
+ */
+interface IStaticSiteStackProps extends StackProps {
     readonly domainName: string;
     readonly webAssetPath: string;
 }
 
 export class StaticSiteStack extends Stack {
-    constructor(scope: Construct, id: string, props: StaticSiteStackProps) {
+    constructor(scope: Construct, id: string, props: IStaticSiteStackProps) {
         super(scope, id, props);
 
         new HostedSite(this, 'Blip', {
