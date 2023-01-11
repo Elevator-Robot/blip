@@ -15,7 +15,7 @@ type environment = { account: string, region: string }
  * @param domainName   - domain name to depoy for
  * @param webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
  * @typeParam env      - Object containing your AWS #account ID and #region
-*/
+ */
 interface IApplicationProps {
     readonly domainName: string;
     readonly webAssetPath: string;
