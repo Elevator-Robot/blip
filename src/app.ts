@@ -11,9 +11,10 @@ import { PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 
 /**
- * @typedef IStaticSiteProps
- * @property {string}         domainName   - domain name to depoy for
- * @property {string}         webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
+ * IStaticSiteProps
+ * @readonly
+ * @property domainName   - domain name to depoy for
+ * @property webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
  */
 interface IStaticSiteProps {
     readonly domainName: string;
@@ -21,14 +22,13 @@ interface IStaticSiteProps {
 }
 
 /**
- * @class
+ * Hosted Site Construct
  */
 class HostedSite extends Construct {
     /**
-     * 
-     * @param {Construct} scope 
-     * @param {string} id 
-     * @param {IStaticSiteProps} props 
+     * @param scope - scope as Construct
+     * @param id    - identifier
+     * @param props - IStaticSiteProps
      */
     constructor(scope: Construct, id: string, props: IStaticSiteProps) {
         super(scope, id);
@@ -101,10 +101,10 @@ class HostedSite extends Construct {
 }
 
 /**
- * @typedef IStaticSiteStackProps
- * @property {string}         domainName   - domain name to depoy for
- * @property {string}         webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
- * @extends StackProps
+ * IStaticSiteStackProps
+ * @readonly
+ * @param domainName   - domain name to depoy for
+ * @param webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
  */
 interface IStaticSiteStackProps extends StackProps {
     readonly domainName: string;
