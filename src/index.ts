@@ -10,11 +10,11 @@ import { StaticSiteStack } from './app';
 type environment = { account: string, region: string }
 
 /**
-* IApplicationProps
-* @readonly
-* @param domainName   - domain name to depoy for
-* @param webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
-* @typeParam env      - Object containing your AWS #account ID and #region
+ * IApplicationProps
+ * @readonly
+ * @param domainName   - domain name to depoy for
+ * @param webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
+ * @typeParam env      - Object containing your AWS #account ID and #region
 */
 interface IApplicationProps {
     readonly domainName: string;
