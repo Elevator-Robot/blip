@@ -9,16 +9,33 @@ import { Distribution, AllowedMethods, ViewerProtocolPolicy } from 'aws-cdk-lib/
 import { S3Origin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import { PolicyStatement, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
-interface StaticSiteProps {
+
+/**
+ * IStaticSiteProps
+ * @readonly
+ * @property domainName   - domain name to depoy for
+ * @property webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
+ */
+interface IStaticSiteProps {
     readonly domainName: string;
     readonly webAssetPath: string;
 }
 
+/**
+ * Hosted Site Construct
+ */
 class HostedSite extends Construct {
-    constructor(scope: Construct, id: string, props: StaticSiteProps) {
+    /**
+     * @param scope - scope as Construct
+     * @param id    - identifier
+     * @param props - IStaticSiteProps
+     */
+    constructor(scope: Construct, id: string, props: IStaticSiteProps) {
         super(scope, id);
 
-        const bucket = new Bucket(this, 'Bucket', {
+        const stack = Stack.of(this);
+
+        const bucket = new Bucket(stack, 'Bucket', {
             removalPolicy: RemovalPolicy.DESTROY,
             autoDeleteObjects: true,
             websiteIndexDocument: 'index.html',
@@ -27,26 +44,26 @@ class HostedSite extends Construct {
             encryption: BucketEncryption.S3_MANAGED,
         });
 
-        const zone = HostedZone.fromLookup(this, 'Zone', {
+        const zone = HostedZone.fromLookup(stack, 'Zone', {
             domainName: props.domainName,
         });
 
-        const certificate = new DnsValidatedCertificate(this, 'Certificate', {
+        const certificate = new DnsValidatedCertificate(stack, 'Certificate', {
             domainName: props.domainName,
             hostedZone: zone,
             region: 'us-east-1',
         });
 
-        new BucketDeployment(this, 'DeployToBucket', {
+        new BucketDeployment(stack, 'DeployToBucket', {
             sources: [Source.asset(props.webAssetPath)],
             destinationBucket: bucket,
         });
 
-        const distribution = new Distribution(this, 'Distribution', {
+        const distribution = new Distribution(stack, 'Distribution', {
             defaultBehavior: {
-            origin: new S3Origin(bucket),
-            allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
-            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
+                origin: new S3Origin(bucket),
+                allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
+                viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS
             },
             enabled: true,
             domainNames: [props.domainName],
@@ -61,11 +78,11 @@ class HostedSite extends Construct {
             resources: [bucket.arnForObjects('*')],
             principals: [new ServicePrincipal('cloudfront.amazonaws.com')],
             conditions: {
-            StringEquals: {'aws:Referer': certificate.certificateArn}
+                StringEquals: { 'aws:Referer': certificate.certificateArn }
             },
         }));
 
-        const record = new ARecord(this, 'AliasRecord', {
+        const record = new ARecord(stack, 'AliasRecord', {
             zone,
             recordName: props.domainName,
             target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
@@ -73,30 +90,36 @@ class HostedSite extends Construct {
             ttl: Duration.seconds(60),
         });
 
-        new CfnOutput(this, 'DistributionDomainName', {
+        new CfnOutput(stack, 'DistributionDomainName', {
             value: distribution.distributionDomainName,
         });
-        new CfnOutput(this, 'DomainName', {
+        new CfnOutput(stack, 'DomainName', {
             value: record.domainName,
         });
-        new CfnOutput(this, 'BucketUrl', {
+        new CfnOutput(stack, 'BucketUrl', {
             value: bucket.bucketWebsiteUrl,
         });
-
-
     }
 }
 
-interface StaticSiteStackProps extends StackProps {
+/**
+ * IStaticSiteStackProps
+ * @readonly
+ * @param domainName   - domain name to depoy for
+ * @param webAssetPath -  Path to your web asset build folder [e.g. .dist || .build || .out]
+ */
+interface IStaticSiteStackProps extends StackProps {
     readonly domainName: string;
     readonly webAssetPath: string;
 }
 
 export class StaticSiteStack extends Stack {
-    constructor(scope: Construct, id: string, props: StaticSiteStackProps) {
+    constructor(scope: Construct, id: string, props: IStaticSiteStackProps) {
         super(scope, id, props);
 
-        new HostedSite(this, 'Blip', {
+        const stack = Stack.of(this);
+
+        new HostedSite(stack, 'Blip', {
             domainName: props.domainName,
             webAssetPath: props.webAssetPath,
         });
