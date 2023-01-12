@@ -5,7 +5,7 @@ import { StaticSiteStack } from './app';
 /**
  * AWS environment
  * @typeParam account - AWS account ID
- * @typeParam region  - AWS deploy region 
+ * @typeParam region  - AWS deploy region
  */
 type environment = { account: string, region: string }
 
@@ -42,6 +42,6 @@ export class Application {
         });
         const synth = app.synth();
         const template: CloudFormationStackArtifact = synth.getStackByName(stack.stackName).template;
-        return template;
+        return template as CloudFormationStackArtifact;
     }
 }
