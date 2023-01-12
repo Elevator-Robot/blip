@@ -1,5 +1,5 @@
 # Blip
-[![CircleCI](https://circleci.com/gh/Elevator-Robot/blip/tree/main.svg?style=shield)](https://circleci.com/gh/Elevator-Robot/blip/tree/main)
+[![Tests](https://github.com/Elevator-Robot/blip/actions/workflows/ci.yml/badge.svg)](https://github.com/Elevator-Robot/blip/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/%40elevator-robot%2Fblip.svg)](https://badge.fury.io/js/%40elevator-robot%2Fblip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 ## What is Blip?
