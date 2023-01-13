@@ -1,5 +1,9 @@
 # Blip
+<<<<<<< HEAD
 [![Tests](https://github.com/Elevator-Robot/blip/actions/workflows/ci.yml/badge.svg)](https://github.com/Elevator-Robot/blip/actions/workflows/ci.yml)
+=======
+[![Node.js CI](https://github.com/Elevator-Robot/blip/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/Elevator-Robot/blip/actions/workflows/ci.yml)
+>>>>>>> 98314c61bc65876eee2e51c9dde908bf4d2fa63a
 [![npm version](https://badge.fury.io/js/%40elevator-robot%2Fblip.svg)](https://badge.fury.io/js/%40elevator-robot%2Fblip)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 ## What is Blip?
