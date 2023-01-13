@@ -1,14 +1,17 @@
-import { Application } from './index';
-// const { Application } = require('@elevator-robot/blip');
+import { Application } from "./index";
 
+describe("TestStack", () => {
+  test("synthesizes the way we expect", () => {
 
-const test = new Application({
-    env: {
-        account: '764114738171',
-        region: 'us-east-1',
-    },
-    domainName: 'aaronwest.me',
-    webAssetPath: 'dist',
+    const app = new Application({
+      domainName: "aaronwest.me",
+      webAssetPath: "./",
+      env: {
+        account: "123456789",
+        region: "us-east-1",
+      },
+    });
+
+    expect(app)
+    });
 });
-
-console.log(test);
