@@ -43,5 +43,6 @@ export class Application {
         const synth = app.synth();
         const template: CloudFormationStackArtifact = synth.getStackByName(stack.stackName).template;
         return template as CloudFormationStackArtifact;
+
     }
 }
