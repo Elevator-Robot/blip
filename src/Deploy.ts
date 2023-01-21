@@ -1,13 +1,9 @@
-import * as cfn from 'aws-sdk/clients/cloudformation';
+import { CloudFormation } from '@aws-sdk/client-cloudformation';
+import { IDeployProps } from './types';
 
-const cfnClient = new cfn({
+const cfnClient = new CloudFormation({
     region: 'us-east-1',
 });
-
-interface IDeployProps {
-    readonly StackName: string;
-    readonly TemplateBody: string;
-}
 
 export class Deploy {
     readonly StackName: string;
@@ -21,7 +17,7 @@ export class Deploy {
                 ChangeSetName: 'test',
                 ChangeSetType: 'CREATE',
                 StackName: this.StackName,
-            }).promise();
+            });
         } catch (error) {
             console.log(error);
         }

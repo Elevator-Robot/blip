@@ -2,6 +2,9 @@
   "compilerOptions": {
     "declarationMap": false,
     "outDir": "dist",
+    "types": [
+      "jest"
+    ],
     "inlineSourceMap": true,
     "inlineSources": true,
     "alwaysStrict": true,
@@ -9,7 +12,7 @@
     "experimentalDecorators": true,
     "incremental": true,
     "lib": [
-      "ES2022"
+      "DOM"
     ],
     "module": "CommonJS",
     "newLine": "lf",

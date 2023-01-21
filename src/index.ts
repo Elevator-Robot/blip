@@ -1,6 +1,4 @@
-import { App } from 'aws-cdk-lib';
-import { type CloudFormationStackArtifact } from 'aws-cdk-lib/cx-api';
-import { StaticSiteStack } from './app';
+import { Synthisize } from './Synthisize';
 
 /**
  * AWS environment
@@ -31,18 +29,9 @@ export class Application {
      * @param props 
      */
     constructor(props: IApplicationProps) {
-        const app = new App();
-        const stack = new StaticSiteStack(app, 'StaticSiteStack', {
-            env: {
-                account: props.env.account,
-                region: props.env.region,
-            },
-            domainName: props.domainName,
-            webAssetPath: props.webAssetPath,
-        });
-        const synth = app.synth();
-        const template: CloudFormationStackArtifact = synth.getStackByName(stack.stackName).template;
-        return template as CloudFormationStackArtifact;
+        
+        const artifact = new Synthisize(props)
 
+        console.log(artifact);
     }
 }

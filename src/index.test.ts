@@ -1,4 +1,5 @@
 import { Application } from "./index";
+// import { Template } from "aws-cdk-lib/assertions";
 
 describe("TestStack", () => {
   test("synthesizes the way we expect", () => {
@@ -12,6 +13,7 @@ describe("TestStack", () => {
       },
     });
 
-    expect(app)
+    expect(app) // this needs to be beafed up
+
     });
 });
