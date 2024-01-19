@@ -7,12 +7,11 @@ logger = Logger(service="my-service", leve="INFO")
 
 S3 = boto3.client("s3")
 
-def hello(event, context):
+
+def get_url(event, context):
     """
     A lambda function that returns an s3 presigned url.
     The nature of the url (upload or download) is deturmined by the event body.
-
-    :param event
     """
     event = json.loads(event["body"])
 
@@ -33,3 +32,11 @@ def hello(event, context):
         )
     else:
         raise ClientError("Invalid action", "invalid action")
+
+
+def lambda_handler(event, context):
+    try:
+        return get_url(event, context)
+    except ClientError as e:
+        logger.exception(e)
+        raise e

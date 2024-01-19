@@ -1,10 +1,10 @@
-service: aws-python-project
+service: blip
 
 frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: python3.9
+  runtime: python3.11
 
 functions:
   url:
