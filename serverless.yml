@@ -6,6 +6,11 @@ provider:
   name: aws
   runtime: python3.11
 
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+    layer: true
+
 functions:
   url:
     handler: handler.hello
@@ -13,3 +18,6 @@ functions:
       - http:
           path: hello
           method: post
+    layers:
+      - {Ref: PythonRequirementsLambdaLayer}
+  
