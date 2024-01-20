@@ -5,19 +5,56 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: python3.11
+  stage: ${opt:stage, 'dev'}
 
 custom:
   pythonRequirements:
-    dockerizePip: non-linux
     layer: true
+    dockerizePip: non-linux
+    slim: true
+
+package:
+  patterns:
+    - '!*/**'
+    - 'src/**'
+    - 'requirements.txt'
 
 functions:
+  blip:
   url:
-    handler: handler.hello
+    handler: src/handler.lambda_handler
     events:
       - http:
-          path: hello
+          path: url
           method: post
+          cors: true
     layers:
       - {Ref: PythonRequirementsLambdaLayer}
-  
+
+resources:
+  Resources:
+    MyBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        CorsConfiguration:
+          CorsRules:
+            - AllowedOrigins:
+                - '*'
+              AllowedHeaders:
+                - '*'
+              AllowedMethods:
+                - GET
+                - PUT
+                - POST
+                - DELETE
+                - HEAD
+              MaxAge: 3000
+              ExposedHeaders:
+                - 'x-amz-server-side-encryption'
+                - 'x-amz-request-id'
+                - 'x-amz-id-2'
+                - 'ETag'
+
+plugins:
+  - serverless-python-requirements
+
