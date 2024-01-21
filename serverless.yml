@@ -30,6 +30,9 @@ functions:
           cors: true
     layers:
       - {Ref: PythonRequirementsLambdaLayer}
+    environment:
+      BUCKET_NAME: !Ref MyBucket
+      KEY_NAME: "test/blah.txt"
 
 resources:
   Resources:

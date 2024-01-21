@@ -1,3 +1,5 @@
+from os import environ
+import json
 import boto3
 from aws_lambda_powertools import Logger
 from aws_lambda_powertools.event_handler import (
@@ -18,7 +20,7 @@ S3 = boto3.client("s3")
 app = APIGatewayRestResolver()
 
 
-@app.put("/url")
+@app.post("/url")
 def get_url() -> Response:
     """
     A lambda function that returns an s3 presigned url.
@@ -28,29 +30,32 @@ def get_url() -> Response:
     action = event_data["action"]
     logger.info(event_data)
 
-    params = {
-        "Bucket": "blahBucket",
-        "Key": "blahKey",
-    }
+    params = {"Bucket": environ["BUCKET_NAME"], "Key": environ["KEY_NAME"]}
 
     url = None
     if action == "upload":
-        S3.generate_presigned_url(
+        url = S3.generate_presigned_url(
             ClientMethod="put_object",
             Params=params,
         )
     elif action == "download":
-        S3.generate_presigned_url(
+        url = S3.generate_presigned_url(
             ClientMethod="get_object",
             Params=params,
         )
     else:
         raise ClientError("Invalid action", "invalid action")
 
+    if not url:
+        raise ClientError(
+            "There was an error generating the url",
+            "This was probably caused by specifying an invalid destination",
+        )
+
     return Response(
         status_code=200,
         content_type=content_types.APPLICATION_JSON,
-        body={"url": url},
+        body=json.dumps({"url": url}),
     )
 
 
