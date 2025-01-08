@@ -1,6 +1,0 @@
-{
-  "httpMethod": "PUT",
-  "path": "/url",
-  "body": "{\"action\": \"upload\"}"
-}
-
