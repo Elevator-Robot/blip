@@ -179,3 +179,8 @@ pyrightconfig.json
 .serverless
 node_modules
 
+
+
+# Added by cargo
+
+/target
