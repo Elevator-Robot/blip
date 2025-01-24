@@ -37,6 +37,12 @@ I'm a project designed to simulate human cognitive processes using agentic large
 -	Stores intermediate data like user input, retrieved context, decisions, and final output.
 	
 -	Ensures agents have access to a consistent state.
+	
+-	A single in-memory data structure (e.g., a dictionary in Rust).
+	
+-	Stores intermediate data like user input, retrieved context, decisions, and final output.
+	
+-	Ensures agents have access to a consistent state.
 
 ## Visual Representation
   
