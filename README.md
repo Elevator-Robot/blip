@@ -15,17 +15,28 @@ I'm a project designed to simulate human cognitive processes using agentic large
 ## Agent Communication Architecture
 
 1.	Central Controller (Coordinator):
-	•	Acts as the orchestrator.
-	•	Routes messages between agents in a predefined sequence.
-	•	Maintains a shared memory/context store that agents can read/write to.
+
+- Acts as the orchestrator.
+
+- Routes messages between agents in a predefined sequence.
+
+- Maintains a shared memory/context store that agents can read/write to.
+
 2.	Agents:
-	•	Independent modular components (e.g., Perception Agent, Memory Agent).
-	•	Each agent focuses on its specific task (input processing, context retrieval, reasoning, etc.).
-	•	Communicates only with the Central Controller.
+
+- Independent modular components (e.g., Perception Agent, Memory Agent).
+
+- Each agent focuses on its specific task (input processing, context retrieval, reasoning, etc.).
+	
+-	Communicates only with the Central Controller.
+
 3.	Shared Memory/Context:
-	•	A single in-memory data structure (e.g., a dictionary in Rust).
-	•	Stores intermediate data like user input, retrieved context, decisions, and final output.
-	•	Ensures agents have access to a consistent state.
+	
+-	A single in-memory data structure (e.g., a dictionary in Rust).
+	
+-	Stores intermediate data like user input, retrieved context, decisions, and final output.
+	
+-	Ensures agents have access to a consistent state.
 
 ## Visual Representation
   
