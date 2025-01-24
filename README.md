@@ -28,4 +28,3 @@ Key Components
 	•	Communicates only with the Central Controller.
 </dropdown>
 ```
-```xml
