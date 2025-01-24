@@ -39,4 +39,3 @@ I'm a project designed to simulate human cognitive processes using agentic large
     F --> G(Self-Agent)
     G --> H[User Output]
   ```
-
