@@ -51,7 +51,7 @@ function App() {
       {/* Header */}
       <header className="bg-white shadow p-4 w-full rounded-lg">
         <div className="flex justify-between items-center px-4">
-          <h1 className="text-xl font-bold">Elevator Robot Chat</h1>
+          <h1 className="text-xl font-bold">Brain in Cup</h1>
           <button
             onClick={signOut}
             className="px-4 py-2 text-sm text-gray-600 hover:text-gray-800"
