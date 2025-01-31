@@ -10,8 +10,8 @@ interface Message {
 // Add these color utility functions
 const generateGradient = (role: 'user' | 'assistant') => {
   return role === 'user' 
-    ? 'bg-gradient-to-r from-indigo-400 to-purple-500'
-    : 'bg-gradient-to-r from-slate-100 to-slate-200';
+    ? 'bg-gradient-to-r from-brand-accent-primary to-brand-accent-secondary'
+    : 'bg-gradient-to-r from-purple-900/30 to-slate-800/30'; // Subtle purple tint
 };
 
 function App() {
@@ -54,14 +54,14 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-brand-bg-dark via-brand-bg-light to-brand-bg-dark">
       {/* Header */}
-      <header className="bg-white/70 backdrop-blur-sm border-b border-slate-200 fixed top-0 w-full z-10">
+      <header className="bg-brand-surface-dark backdrop-blur-md border-b border-brand-surface-border fixed top-0 w-full z-10">
         <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
-          <h1 className="text-2xl font-light text-slate-700">Brain in Cup</h1>
+          <h1 className="text-2xl font-light text-brand-text-primary">Brain in Cup</h1>
           <button
             onClick={signOut}
-            className="px-4 py-2 text-sm text-slate-600 hover:text-slate-800 transition-colors duration-200"
+            className="px-4 py-2 text-sm text-brand-text-secondary hover:text-brand-text-primary transition-colors duration-200"
           >
             Sign out
           </button>
@@ -78,7 +78,7 @@ function App() {
             >
               <div
                 className={`max-w-[80%] rounded-2xl p-4 shadow-sm ${generateGradient(message.role)} 
-                  ${message.role === 'user' ? 'text-white' : 'text-slate-700'}`}
+                  ${message.role === 'user' ? 'text-brand-text-primary' : 'text-brand-text-secondary'}`}
               >
                 <p className="leading-relaxed">{message.content}</p>
               </div>
@@ -87,7 +87,7 @@ function App() {
         </main>
 
         {/* Input Form */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white/70 backdrop-blur-sm border-t border-slate-200">
+        <div className="fixed bottom-0 left-0 right-0 bg-brand-surface-dark backdrop-blur-md border-t border-brand-surface-border">
           <div className="max-w-6xl mx-auto p-4">
             <form
               onSubmit={handleSubmit}
@@ -98,15 +98,16 @@ function App() {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 placeholder="Type your message..."
-                className="flex-1 rounded-full px-6 py-3 bg-white border border-slate-200 
-                  focus:outline-none focus:border-indigo-300 focus:ring-2 focus:ring-indigo-100 
+                className="flex-1 rounded-full px-6 py-3 bg-brand-surface-dark border border-brand-surface-border 
+                  text-brand-text-primary placeholder-brand-text-muted
+                  focus:outline-none focus:border-brand-accent-primary focus:ring-2 focus:ring-brand-accent-primary/20 
                   transition-all duration-200"
               />
               <button
                 type="submit"
-                className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-400 to-purple-500 
-                  text-white shadow-sm hover:opacity-90 transition-all duration-200 
-                  focus:outline-none focus:ring-2 focus:ring-indigo-100"
+                className="px-8 py-3 rounded-full bg-gradient-to-r from-brand-accent-primary to-brand-accent-secondary 
+                  text-brand-text-primary shadow-sm hover:opacity-90 transition-all duration-200 
+                  focus:outline-none focus:ring-2 focus:ring-brand-accent-primary/20"
               >
                 Send
               </button>
