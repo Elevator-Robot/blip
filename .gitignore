@@ -184,3 +184,7 @@ node_modules
 # Added by cargo
 
 /target
+
+# Amplify
+.amplify
+amplify_outputs.json
