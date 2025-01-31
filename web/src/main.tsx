@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Authenticator, ThemeProvider, Theme } from '@aws-amplify/ui-react';
+import { Authenticator, ThemeProvider, defaultTheme } from '@aws-amplify/ui-react';
 import App from "./App.tsx";
 import "./index.css";
 import { Amplify } from "aws-amplify";
@@ -9,99 +9,103 @@ import '@aws-amplify/ui-react/styles.css';
 
 Amplify.configure(outputs);
 
-const theme: Theme = {
+const customTheme = {
+  ...defaultTheme,
   name: 'brain-in-cup-theme',
   tokens: {
+    ...defaultTheme.tokens,
     colors: {
+      ...defaultTheme.tokens.colors,
       background: {
-        primary: { value: '#0f172a' },
-        secondary: { value: '#1e1b4b' },
+        primary: '#0f172a',
+        secondary: '#1e1b4b',
       },
       brand: {
         primary: {
-          10: { value: '#f5f3ff' },
-          20: { value: '#ede9fe' },
-          40: { value: '#ddd6fe' },
-          60: { value: '#c4b5fd' },
-          80: { value: '#a78bfa' },
-          100: { value: '#8b5cf6' },
+          10: '#f5f3ff',
+          20: '#ede9fe',
+          40: '#ddd6fe',
+          60: '#c4b5fd',
+          80: '#a78bfa',
+          100: '#8b5cf6',
         },
       },
       border: {
-        primary: { value: 'rgba(51, 65, 85, 0.5)' },
-        secondary: { value: 'rgba(30, 27, 75, 0.5)' },
+        primary: 'rgba(51, 65, 85, 0.5)',
+        secondary: 'rgba(30, 27, 75, 0.5)',
       },
       font: {
-        interactive: { value: '#ffffff' },  // White text for all interactive elements
-        secondary: { value: '#cbd5e1' },  // Light gray text
-        tertiary: { value: '#94a3b8' },
+        interactive: '#ffffff',
+        secondary: '#cbd5e1',
+        tertiary: '#94a3b8',
       },
     },
     components: {
+      ...defaultTheme.tokens.components,
       authenticator: {
         container: {
-          backgroundColor: { value: 'transparent' },
-          color: { value: '{colors.font.interactive.value}' }, // Force white text globally
+          backgroundColor: 'transparent',
+          color: 'font.interactive',
         },
         tabs: {
           item: {
-            color: { value: '{colors.font.interactive.value}' },  // White for "Sign In" and "Create Account" tabs
+            color: 'font.interactive',
             _hover: {
-              color: { value: '{colors.brand.primary.80.value}' },
+              color: 'brand.primary.80',
             },
             _active: {
-              color: { value: '{colors.brand.primary.100.value}' },
-              borderColor: { value: '{colors.brand.primary.100.value}' },
+              color: 'brand.primary.100',
+              borderColor: 'brand.primary.100',
             },
           },
         },
       },
       field: {
         input: {
-          color: { value: '{colors.font.interactive.value}' }, // White input text
-          borderColor: { value: '{colors.border.primary.value}' },
-          backgroundColor: { value: 'rgba(15, 23, 42, 0.5)' },
+          color: 'font.interactive',
+          borderColor: 'border.primary',
+          backgroundColor: 'rgba(15, 23, 42, 0.5)',
           _placeholder: {
-            color: { value: '#ffffff' }, // ***Force placeholders (Enter your Email/Password) to be white***
-            opacity: { value: '1' }, // Ensures full visibility
+            color: '#ffffff',
+            opacity: 1,
           },
           _focus: {
-            borderColor: { value: '{colors.brand.primary.100.value}' },
-            boxShadow: { value: '0 0 0 2px rgba(139, 92, 246, 0.2)' },
+            borderColor: 'brand.primary.100',
+            boxShadow: '0 0 0 2px rgba(139, 92, 246, 0.2)',
           },
           _autofill: {
-            backgroundColor: { value: 'rgba(15, 23, 42, 0.8) !important' }, // Ensure autofill background blends with dark mode
-            color: { value: '#ffffff !important' }, // Ensure autofill text is white
+            backgroundColor: 'rgba(15, 23, 42, 0.8) !important',
+            color: '#ffffff !important',
           },
         },
         label: {
-          color: { value: '#ffffff' }, // ***Ensure labels (Email, Password) are WHITE***
+          color: '#ffffff',
         },
       },
       button: {
         primary: {
-          backgroundColor: { value: '{colors.brand.primary.100.value}' },
+          backgroundColor: 'brand.primary.100',
           _hover: {
-            backgroundColor: { value: '{colors.brand.primary.80.value}' },
+            backgroundColor: 'brand.primary.80',
           },
           _focus: {
-            backgroundColor: { value: '{colors.brand.primary.80.value}' },
+            backgroundColor: 'brand.primary.80',
           },
         },
       },
       link: {
-        color: { value: '{colors.font.interactive.value}' }, // White for "Forgot your password?" and other links
+        color: 'font.interactive',
         _hover: {
-          color: { value: '{colors.brand.primary.80.value}' },
+          color: 'brand.primary.80',
         },
       },
     },
   },
 };
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme as any}>
       <div className="min-h-screen bg-gradient-to-br from-brand-bg-dark via-brand-bg-light to-brand-bg-dark">
         <Authenticator>
           <App />
