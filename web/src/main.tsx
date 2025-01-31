@@ -32,20 +32,50 @@ const theme = {
         secondary: 'rgba(30, 27, 75, 0.5)',
       },
       font: {
-        interactive: '#ffffff',
-        secondary: '#cbd5e1',
+        interactive: '#ffffff',  // White text for all interactive elements
+        secondary: '#cbd5e1',  // Light gray text
         tertiary: '#94a3b8',
       },
     },
     components: {
       authenticator: {
-        router: {
-          borderWidth: '0',
-          backgroundColor: 'rgba(15, 23, 42, 0.5)',
-          backdropFilter: 'blur(16px)',
-        },
         container: {
           backgroundColor: 'transparent',
+          color: 'font.interactive', // Force white text globally
+        },
+        tabs: {
+          item: {
+            color: 'font.interactive',  // White for "Sign In" and "Create Account" tabs
+            _hover: {
+              color: 'brand.primary.80',
+            },
+            _active: {
+              color: 'brand.primary.100',
+              borderColor: 'brand.primary.100',
+            },
+          },
+        },
+      },
+      field: {
+        input: {
+          color: 'font.interactive', // White input text
+          borderColor: 'border.primary',
+          backgroundColor: 'rgba(15, 23, 42, 0.5)',
+          _placeholder: {
+            color: '#ffffff', // ***Force placeholders (Enter your Email/Password) to be white***
+            opacity: 1, // Ensures full visibility
+          },
+          _focus: {
+            borderColor: 'brand.primary.100',
+            boxShadow: '0 0 0 2px rgba(139, 92, 246, 0.2)',
+          },
+          _autofill: {
+            backgroundColor: 'rgba(15, 23, 42, 0.8) !important', // Ensure autofill background blends with dark mode
+            color: '#ffffff !important', // Ensure autofill text is white
+          },
+        },
+        label: {
+          color: '#ffffff', // ***Ensure labels (Email, Password) are WHITE***
         },
       },
       button: {
@@ -59,34 +89,10 @@ const theme = {
           },
         },
       },
-      fieldset: {
-        borderWidth: '0',
-      },
-      field: {
-        input: {
-          color: 'font.interactive',
-          borderColor: 'border.primary',
-          backgroundColor: 'rgba(15, 23, 42, 0.5)',
-          _focus: {
-            borderColor: 'brand.primary.100',
-            boxShadow: '0 0 0 2px rgba(139, 92, 246, 0.2)',
-          },
-        },
-        label: {
-          color: 'font.secondary',
-        },
-      },
-      tabs: {
-        backgroundColor: 'transparent',
-        item: {
-          color: 'font.secondary',
-          _hover: {
-            color: 'font.interactive',
-          },
-          _active: {
-            color: 'brand.primary.100',
-            borderColor: 'brand.primary.100',
-          },
+      link: {
+        color: 'font.interactive', // White for "Forgot your password?" and other links
+        _hover: {
+          color: 'brand.primary.80',
         },
       },
     },
