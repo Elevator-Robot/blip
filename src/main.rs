@@ -1,4 +1,4 @@
-use aws_sdk_bedrockruntime::types::Blob;
+use aws_sdk_bedrockruntime::primitives::Blob;
 use serde_json::{json, Value};
 
 #[tokio::main]
@@ -21,14 +21,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let response = client
         .invoke_model()
         .model_id("anthropic.claude-3-sonnet-20240229-v1:0")
-        .body(Body::from(request.to_string()))
+        .body(Blob::new(request.to_string()))
         .content_type("application/json")
         .send()
         .await?;
 
     // Parse and print the response
-    let body = response.body;
-    if let Some(body_contents) = body {
+    if let body = response.body {
         let response_str = String::from_utf8(body_contents.into_inner())?;
         let response_json: Value = serde_json::from_str(&response_str)?;
         
