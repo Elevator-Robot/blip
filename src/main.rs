@@ -20,7 +20,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Create the invoke model request
     let response = client
         .invoke_model()
-        .model_id("anthropic.claude-3-sonnet-20240229-v1:0")
+        .model_id("anthropic.claude-3-5-sonnet-20240620-v1:0")
         .body(Blob::new(request.to_string()))
         .content_type("application/json")
         .send()
