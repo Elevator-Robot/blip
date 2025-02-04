@@ -28,7 +28,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Parse and print the response
     if let body = response.body {
-        let response_str = String::from_utf8(body_contents.into_inner())?;
+        let response_str = String::from_utf8(body.into_inner())?;
         let response_json: Value = serde_json::from_str(&response_str)?;
         
         if let Some(content) = response_json["content"].as_array() {
