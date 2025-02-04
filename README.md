@@ -12,6 +12,22 @@ I'm a project designed to simulate human cognitive processes using agentic large
 5.	Language Agent: Converts decisions into clear, human-readable output.
 6.	Self-Agent: Acts as a final review layer, modifying or overriding the output when necessary.
 
+## Visual Representation
+  
+  ```mermaid
+graph TD
+    A[Controller] -->|Routes input| B(Perception Agent)
+    A -->|Retrieves context| C(Memory Agent)
+    
+    B -->|Processes & sends to| D(Reasoning Agent)
+    C -->|Provides context to| D
+    
+    D -->|Forms decision & sends to| E(Emotional Agent)
+    E -->|Applies bias & sends to| F(Language Agent)
+    F -->|Converts to text & sends to| G(Self-Agent)
+    G -->|Final review & sends to| H[User Output]
+  ```
+
 ## Agent Communication Architecture
 
 1.	Central Controller (Coordinator):
@@ -43,16 +59,3 @@ I'm a project designed to simulate human cognitive processes using agentic large
 -	Stores intermediate data like user input, retrieved context, decisions, and final output.
 	
 -	Ensures agents have access to a consistent state.
-
-## Visual Representation
-  
-  ```mermaid
-  graph TD
-    A[User Input] --> B(Perception Agent)
-    B --> C(Memory Agent)
-    C --> D(Reasoning Agent)
-    D --> E(Emotional Agent)
-    E --> F(Language Agent)
-    F --> G(Self-Agent)
-    G --> H[User Output]
-  ```

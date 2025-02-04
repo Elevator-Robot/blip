@@ -13,7 +13,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "max_tokens": 1000,
         "messages": [{
             "role": "user",
-            "content": "Tell me a short joke about programming."
+            "content": "Tell me a crude but short joke."
         }]
     });
 
